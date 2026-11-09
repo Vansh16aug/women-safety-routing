@@ -18,7 +18,7 @@ npm run dev          # http://localhost:3000
 
 ## Deploy to Vercel
 
-Import the repo in Vercel. No settings or environment variables are needed: it is detected as a Next.js project, and `next.config.ts` ships `data/runtime/` with the API function. Check the function's region and memory in the project settings if you change them (the engine uses about 150 MB once loaded).
+Import the repo in Vercel. No settings or environment variables are needed: it is detected as a Next.js project, and `next.config.ts` ships `data/runtime/` with the API function. Check the function's region and memory in the project settings if you change them (the engine uses about 200 MB of memory and loads in about 0.3 s per cold instance, measured locally).
 
 ## API (prototype)
 
