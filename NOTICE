@@ -1,0 +1,15 @@
+Delhi Night Routes: data notices
+
+data/runtime/ and data/runtime/layers/ contain data derived from:
+
+- OpenStreetMap, (c) OpenStreetMap contributors, available under the Open Database Licence (ODbL) 1.0.
+  https://www.openstreetmap.org/copyright
+  This derived database is made available under the same licence, as ODbL requires. Credit OpenStreetMap
+  contributors wherever you use it.
+- Overture Maps Foundation Places, release 2026-10-21.0. Licences by source: CDLA Permissive 2.0, Apache 2.0, CC0.
+  https://overturemaps.org/
+- Map tiles: OpenFreeMap with OpenMapTiles data, drawn with MapLibre GL JS (loaded from a CDN at run time).
+- Landmark icons: Google Material Icons, Apache 2.0.
+
+Opening hours in this data are mostly estimated from the type of place. The Night Activity Score is an
+activity estimate, not a safety rating.

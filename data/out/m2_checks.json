@@ -1,0 +1,209 @@
+{
+ "results": {
+  "karol_bagh": {
+   "n_routes": 40,
+   "day": {
+    "mean": 65.7,
+    "min": 36.2,
+    "max": 86.6
+   },
+   "evening": {
+    "mean": 63.1,
+    "min": 32.6,
+    "max": 85.8
+   },
+   "night": {
+    "mean": 34.9,
+    "min": 9.3,
+    "max": 69.1
+   }
+  },
+  "najafgarh_outer": {
+   "n_routes": 40,
+   "day": {
+    "mean": 30.8,
+    "min": 1.1,
+    "max": 79.8
+   },
+   "evening": {
+    "mean": 28.8,
+    "min": 1.1,
+    "max": 78.0
+   },
+   "night": {
+    "mean": 15.1,
+    "min": 0.2,
+    "max": 49.4
+   }
+  },
+  "route_pairs": {
+   "n": 19,
+   "share_activity_route_higher": 0.74,
+   "mean_detour_ratio": 1.15,
+   "mean_point_change_all_pairs": {
+    "open_places": 2.73,
+    "gaps": 0.66,
+    "help": 0.91,
+    "main_road": 1.13,
+    "transport": 0.06,
+    "turns": -0.35,
+    "cameras": -0.06
+   },
+   "mean_point_change_where_lower": {
+    "open_places": 0.48,
+    "gaps": 0.07,
+    "help": 0.39,
+    "main_road": -1.83,
+    "transport": 0.0,
+    "turns": -3.39,
+    "cameras": -0.02
+   }
+  },
+  "example_karol_bagh": {
+   "day": {
+    "score": 82.1,
+    "band": "day",
+    "length_m": 1131.0,
+    "minutes": 14.1,
+    "points": {
+     "open_places": 23.15,
+     "gaps": 12.87,
+     "help": 14.91,
+     "main_road": 12.88,
+     "transport": 9.14,
+     "turns": 3.37,
+     "cameras": 0.0
+    },
+    "raw": {
+     "open_places_expected": 44.2,
+     "open_places_per_km": 39.1,
+     "places_nearby": 45,
+     "places_with_confirmed_hours": 0,
+     "longest_gap_m": 160.0,
+     "share_in_gaps": 0.142,
+     "help_sum": 15.52,
+     "main_road_share": 0.859,
+     "metro_stops_nearby": 2,
+     "bus_stops_nearby": 7,
+     "turns": 6,
+     "cameras_mapped": 0,
+     "lamps_mapped_per_km": 0.0
+    },
+    "confidence": {
+     "confirmed_share_of_open_mass": 0.0,
+     "lighting": "unknown"
+    }
+   },
+   "evening": {
+    "score": 77.8,
+    "band": "evening",
+    "length_m": 1131.0,
+    "minutes": 14.1,
+    "points": {
+     "open_places": 21.95,
+     "gaps": 10.44,
+     "help": 14.85,
+     "main_road": 12.88,
+     "transport": 8.86,
+     "turns": 3.37,
+     "cameras": 0.0
+    },
+    "raw": {
+     "open_places_expected": 35.7,
+     "open_places_per_km": 31.6,
+     "places_nearby": 45,
+     "places_with_confirmed_hours": 0,
+     "longest_gap_m": 184.0,
+     "share_in_gaps": 0.304,
+     "help_sum": 13.82,
+     "main_road_share": 0.859,
+     "metro_stops_nearby": 2,
+     "bus_stops_nearby": 7,
+     "turns": 6,
+     "cameras_mapped": 0,
+     "lamps_mapped_per_km": 0.0
+    },
+    "confidence": {
+     "confirmed_share_of_open_mass": 0.0,
+     "lighting": "unknown"
+    }
+   },
+   "night": {
+    "score": 52.0,
+    "band": "night",
+    "length_m": 1131.0,
+    "minutes": 14.1,
+    "points": {
+     "open_places": 10.42,
+     "gaps": 6.01,
+     "help": 12.77,
+     "main_road": 12.88,
+     "transport": 2.88,
+     "turns": 3.37,
+     "cameras": 0.0
+    },
+    "raw": {
+     "open_places_expected": 9.2,
+     "open_places_per_km": 8.1,
+     "places_nearby": 45,
+     "places_with_confirmed_hours": 0,
+     "longest_gap_m": 287.0,
+     "share_in_gaps": 0.599,
+     "help_sum": 5.72,
+     "main_road_share": 0.859,
+     "metro_stops_nearby": 2,
+     "bus_stops_nearby": 7,
+     "turns": 6,
+     "cameras_mapped": 0,
+     "lamps_mapped_per_km": 0.0
+    },
+    "confidence": {
+     "confirmed_share_of_open_mass": 0.0,
+     "lighting": "unknown"
+    }
+   }
+  }
+ },
+ "checks": [
+  {
+   "check": "all scores within 0-100",
+   "ok": true,
+   "detail": "min 0.2, max 86.6"
+  },
+  {
+   "check": "Karol Bagh: night score below day score on at least 90% of routes",
+   "ok": true,
+   "detail": "100%"
+  },
+  {
+   "check": "Karol Bagh scores above outer-Delhi scores at night (mean)",
+   "ok": true,
+   "detail": "34.9 vs 15.1"
+  },
+  {
+   "check": "Karol Bagh scores above outer-Delhi scores by day (mean)",
+   "ok": true,
+   "detail": "65.7 vs 30.8"
+  },
+  {
+   "check": "reversed route gives the same score",
+   "ok": true,
+   "detail": "46.0 vs 46.0"
+  },
+  {
+   "check": "no open places: open_places and gaps points are zero",
+   "ok": true,
+   "detail": "0.0, 0.0"
+  },
+  {
+   "check": "no open places: score is lower",
+   "ok": true,
+   "detail": "15.6 vs 73.1"
+  },
+  {
+   "check": "routes that avoid low-activity segments usually score higher at night",
+   "ok": true,
+   "detail": "74% of 19 pairs; mean detour 1.15x"
+  }
+ ]
+}

@@ -1,0 +1,223 @@
+{
+ "osm": {
+  "delhi": {
+   "features": {
+    "shop": 8315,
+    "shop_with_hours": 631,
+    "amenity": 16944,
+    "amenity_with_hours": 1108,
+    "food": 2794,
+    "police": 203,
+    "health": 1631,
+    "atm_bank": 1611,
+    "street_lamp": 1461,
+    "cctv": 3208,
+    "metro": 736,
+    "bus_stop": 2090
+   },
+   "walkable_ways": 171656,
+   "walkable_km": 26251.7,
+   "main_road_km": 4799.8,
+   "ways_by_class_km": {
+    "residential": 15243.5,
+    "service": 3608.5,
+    "tertiary": 2438.8,
+    "secondary": 1228.2,
+    "footway": 796.1,
+    "living_street": 551.5,
+    "track": 475.8,
+    "primary": 464.8,
+    "trunk": 436.3,
+    "unclassified": 322.4,
+    "path": 311.2,
+    "trunk_link": 101.4,
+    "cycleway": 66.0,
+    "secondary_link": 65.5,
+    "primary_link": 49.3,
+    "pedestrian": 39.1,
+    "steps": 19.3,
+    "tertiary_link": 15.3,
+    "corridor": 13.8,
+    "bridleway": 4.1,
+    "road": 0.7
+   },
+   "ways_with_lit_tag": 957,
+   "lit_values": {
+    "yes": 754,
+    "no": 196,
+    "limited": 7
+   }
+  },
+  "kb": {
+   "features": {
+    "shop": 194,
+    "shop_with_hours": 10,
+    "amenity": 246,
+    "amenity_with_hours": 13,
+    "food": 33,
+    "police": 2,
+    "health": 19,
+    "atm_bank": 33,
+    "street_lamp": 17,
+    "cctv": 7,
+    "metro": 14,
+    "bus_stop": 27
+   },
+   "walkable_ways": 1220,
+   "walkable_km": 171.6,
+   "main_road_km": 58.3,
+   "ways_by_class_km": {
+    "residential": 96.2,
+    "tertiary": 42.6,
+    "service": 10.1,
+    "secondary": 9.9,
+    "primary": 5.5,
+    "footway": 4.9,
+    "living_street": 1.6,
+    "steps": 0.2,
+    "secondary_link": 0.1,
+    "path": 0.1,
+    "pedestrian": 0.1,
+    "tertiary_link": 0.1,
+    "primary_link": 0.1,
+    "unclassified": 0.0
+   },
+   "ways_with_lit_tag": 2,
+   "lit_values": {
+    "yes": 2
+   }
+  },
+  "central": {
+   "features": {
+    "shop": 2234,
+    "shop_with_hours": 129,
+    "amenity": 5433,
+    "amenity_with_hours": 296,
+    "food": 987,
+    "police": 77,
+    "health": 285,
+    "atm_bank": 470,
+    "street_lamp": 525,
+    "cctv": 1473,
+    "metro": 252,
+    "bus_stop": 616
+   },
+   "walkable_ways": 28057,
+   "walkable_km": 3673.7,
+   "main_road_km": 842.5,
+   "ways_by_class_km": {
+    "residential": 1681.7,
+    "service": 612.2,
+    "secondary": 343.2,
+    "tertiary": 308.9,
+    "footway": 295.8,
+    "living_street": 69.8,
+    "trunk": 68.3,
+    "primary": 53.6,
+    "path": 48.7,
+    "unclassified": 35.8,
+    "track": 32.3,
+    "trunk_link": 30.5,
+    "pedestrian": 27.0,
+    "secondary_link": 23.9,
+    "primary_link": 12.2,
+    "cycleway": 11.9,
+    "steps": 8.5,
+    "corridor": 7.0,
+    "tertiary_link": 1.9,
+    "bridleway": 0.5,
+    "road": 0.0
+   },
+   "ways_with_lit_tag": 276,
+   "lit_values": {
+    "yes": 176,
+    "no": 100
+   }
+  }
+ },
+ "overture": {
+  "total_in_delhi": 225438,
+  "by_group": {
+   "atm_bank": {
+    "all": 7648,
+    "conf_0.5+": 7378,
+    "conf_0.7+": 6855
+   },
+   "food_drink": {
+    "all": 16286,
+    "conf_0.5+": 11677,
+    "conf_0.7+": 6204
+   },
+   "health_pharmacy": {
+    "all": 18084,
+    "conf_0.5+": 13744,
+    "conf_0.7+": 8421
+   },
+   "other": {
+    "all": 139140,
+    "conf_0.5+": 89373,
+    "conf_0.7+": 45874
+   },
+   "police": {
+    "all": 418,
+    "conf_0.5+": 382,
+    "conf_0.7+": 145
+   },
+   "shop_retail": {
+    "all": 43862,
+    "conf_0.5+": 27663,
+    "conf_0.7+": 13835
+   }
+  },
+  "confidence_hist": {
+   "<0.3": 39514,
+   "0.3-0.6": 77632,
+   "0.6-0.99": 107031,
+   "1.0": 1261
+  },
+  "first_source": {
+   "meta": 184652,
+   "Microsoft": 29785,
+   "Foursquare": 7233,
+   "AllThePlaces": 2249,
+   "DAC": 988,
+   "PinMeTo": 274,
+   "Uberall": 256,
+   "OpenTravel": 1
+  },
+  "kb_total": 5644,
+  "kb_by_group": {
+   "other": 2975,
+   "shop_retail": 1874,
+   "health_pharmacy": 307,
+   "food_drink": 299,
+   "atm_bank": 184,
+   "police": 5
+  },
+  "central_total": 55843
+ },
+ "grid": {
+  "cell_deg": 0.02,
+  "cells_with_any_shop_data": 322,
+  "cells_overture_20plus_but_osm_under_5": 73,
+  "overture_shops_in_those_cells": 5455,
+  "osm_shops_in_those_cells": 73,
+  "total_overture_shop_conf05": 27663,
+  "total_osm_shop": 8315
+ },
+ "meta": {
+  "overture_release": "2026-10-21.0",
+  "kb_box_SWNE": [
+   28.64,
+   77.18,
+   28.66,
+   77.205
+  ],
+  "central_box_SWNE": [
+   28.58,
+   77.15,
+   28.7,
+   77.28
+  ]
+ }
+}

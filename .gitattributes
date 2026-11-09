@@ -1,0 +1,7 @@
+* text=auto eol=lf
+data/runtime/*.f64 binary
+data/runtime/*.i32 binary
+data/runtime/*.u8 binary
+*.png binary
+*.webp binary
+*.mp4 binary

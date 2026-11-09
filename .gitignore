@@ -1,0 +1,16 @@
+node_modules/
+.next/
+.vercel/
+.venv/
+__pycache__/
+*.pbf
+# raw OpenStreetMap extracts and the intermediate tables: rebuild with the pipeline (see README)
+data/raw/
+data/processed/
+tests/reference.json
+tsconfig.tsbuildinfo
+next-env.d.ts
+.env*
+reports/
+research_notes/
+*.log

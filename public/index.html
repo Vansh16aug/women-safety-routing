@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Night Routes">
+<title>Delhi Night Routes</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app">
+  <div id="map" aria-label="Map of Delhi"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+      <span>Delhi Night Routes</span>
+    </div>
+    <div class="tools">
+      <button id="helpBtn" class="pill help" type="button" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+        <span>Help near me</span>
+      </button>
+      <button id="themeBtn" class="pill theme" type="button" aria-label="Switch to dark theme"></button>
+      <button id="aboutBtn" class="pill about" type="button" aria-label="How scores work"><span class="lg">How scores work</span><span class="sm" aria-hidden="true">?</span></button>
+    </div>
+  </header>
+
+  <div id="explore" class="explore" role="group" aria-label="Show places on the map"></div>
+  <button id="layersBtn" class="layers-btn" type="button" aria-label="Map details: terrain, transit, cameras, lamps" aria-expanded="false" aria-controls="layerTray">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27-7.38 5.74zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z"/></svg>
+  </button>
+  <div id="layerTray" class="tray" hidden></div>
+
+  <div id="pickHint" class="pick-hint" hidden>
+    <span id="pickHintText"></span>
+    <button id="pickCancel" type="button">Cancel</button>
+  </div>
+
+  <main id="sheet" class="sheet" aria-live="polite"></main>
+</div>
+
+<dialog id="about" aria-labelledby="aboutTitle">
+  <form method="dialog">
+    <h2 id="aboutTitle">How the score works</h2>
+    <p>The <strong>Night Activity Score</strong> (0 to 100) describes how much happens along a walking route at the hour you travel: places that are likely open, long stretches with none, help points nearby, main roads, transport, and how many turns you take.</p>
+    <p><strong>It is not a safety rating.</strong> Busy streets are not always safe, and quiet streets are not always unsafe. No study we found shows that choosing a route by an app reduces harm. Use it as one input, and trust your own judgement.</p>
+    <h3>What it is based on</h3>
+    <ul>
+      <li>Street and place data from OpenStreetMap and Overture Maps.</li>
+      <li>Most opening hours are <em>estimated</em> from the kind of place (a pharmacy is more likely open at night than a clothes shop). Only a small share are confirmed.</li>
+      <li>Street lighting data is missing for most streets, so lighting is not part of the score.</li>
+      <li>Camera locations are mapped by volunteers and are incomplete; they count for very little.</li>
+    </ul>
+    <h3>Your privacy</h3>
+    <p>No account, no tracking. Your location is used in the browser and sent only to the server running this page, to find a route.</p>
+    <p class="fine">Map data © OpenStreetMap contributors. Places © Overture Maps Foundation. Tiles by OpenFreeMap.</p>
+    <button class="btn btn-primary" value="close">Got it</button>
+  </form>
+</dialog>
+
+<dialog id="help" aria-labelledby="helpTitle"></dialog>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

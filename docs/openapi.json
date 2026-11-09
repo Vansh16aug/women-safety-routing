@@ -1,0 +1,190 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Delhi Night Routes API",
+    "version": "1.0.0",
+    "description": "Prototype API behind Delhi Night Routes: walking routes in Delhi NCT, each with a **Night Activity Score** (0-100).\n\n**The score is an activity estimate from public map data. It is NOT a safety rating.** Most opening hours are estimated from the kind of place (about 2% are confirmed), street lighting is missing for most streets, and no study shows that choosing a route by an app reduces harm. Do not use it as the only input for a safety decision.\n\nEvery JSON response carries a `meta` block with this disclaimer and the data attribution; please keep both visible to end users.\n\nRate limit: 60 calls per minute per client, 10 per minute for whole-city data (`/places`, `/layer`). Over the limit returns 429 with `Retry-After`.",
+    "license": { "name": "Data: OpenStreetMap contributors (ODbL), Overture Maps Foundation" }
+  },
+  "servers": [{ "url": "/api/v1", "description": "Same host as this document" }],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Liveness check",
+        "operationId": "health",
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "status": { "type": "string", "example": "ok" }, "meta": { "$ref": "#/components/schemas/Meta" } } } } } }
+        }
+      }
+    },
+    "/info": {
+      "get": {
+        "summary": "Coverage box, score weights and time bands",
+        "operationId": "info",
+        "responses": { "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object" } } } }, "429": { "$ref": "#/components/responses/RateLimited" } }
+      }
+    },
+    "/route": {
+      "get": {
+        "summary": "Walking routes between two points, each scored",
+        "operationId": "route",
+        "description": "Returns the fastest route plus up to two more-active alternatives within detour limits (25% and 60% longer). Straight-line distance is capped at 15 km. Both points must lie in the Delhi NCT box.",
+        "parameters": [
+          { "name": "slat", "in": "query", "required": true, "schema": { "type": "number" }, "example": 28.6519 },
+          { "name": "slon", "in": "query", "required": true, "schema": { "type": "number" }, "example": 77.1909 },
+          { "name": "elat", "in": "query", "required": true, "schema": { "type": "number" }, "example": 28.6562 },
+          { "name": "elon", "in": "query", "required": true, "schema": { "type": "number" }, "example": 77.241 },
+          { "$ref": "#/components/parameters/Hour" }
+        ],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/RouteResponse" } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/help": {
+      "get": {
+        "summary": "Nearest police stations and hospitals",
+        "operationId": "help",
+        "description": "Up to 3 of each, nearest first, with distance in metres and the estimated chance it is staffed at that hour. Police points are deduplicated within 150 m but may still include outposts. Emergency numbers: 112 (all emergencies), 1091 (women helpline).",
+        "parameters": [
+          { "name": "lat", "in": "query", "required": true, "schema": { "type": "number" }, "example": 28.6519 },
+          { "name": "lon", "in": "query", "required": true, "schema": { "type": "number" }, "example": 77.1909 },
+          { "$ref": "#/components/parameters/Hour" }
+        ],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/HelpResponse" } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "summary": "Find a place by name",
+        "operationId": "search",
+        "parameters": [
+          { "name": "q", "in": "query", "schema": { "type": "string", "maxLength": 80 } },
+          { "name": "lat", "in": "query", "schema": { "type": "number" }, "description": "Bias results toward this point" },
+          { "name": "lon", "in": "query", "schema": { "type": "number" } }
+        ],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "results": { "type": "array", "items": { "type": "object" } }, "meta": { "$ref": "#/components/schemas/Meta" } } } } } },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/places": {
+      "get": {
+        "summary": "Every place of one kind in Delhi (whole-city dump)",
+        "operationId": "places",
+        "description": "Rows are `[lon, lat, name, p_day, p_evening, p_night, confirmed]`, where p is the estimated chance the place is open in that time band.",
+        "parameters": [
+          { "name": "kind", "in": "query", "required": true, "schema": { "type": "string", "enum": ["pharmacy", "atm", "fuel", "hospital", "police", "hotel", "bank", "worship", "metro"] } }
+        ],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object", "properties": { "kind": { "type": "string" }, "places": { "type": "array", "items": { "type": "array", "items": {} } }, "meta": { "$ref": "#/components/schemas/Meta" } } } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    },
+    "/layer": {
+      "get": {
+        "summary": "Map layers: bus stops, cameras, street lamps, metro lines",
+        "operationId": "layer",
+        "description": "`metro_lines` returns GeoJSON with the colour OSM records for each line. Cameras and lamps are volunteer-mapped and incomplete.",
+        "parameters": [
+          { "name": "name", "in": "query", "required": true, "schema": { "type": "string", "enum": ["bus", "cctv", "lamps", "metro_lines"] } }
+        ],
+        "responses": {
+          "200": { "description": "OK", "content": { "application/json": { "schema": { "type": "object" } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "429": { "$ref": "#/components/responses/RateLimited" }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "Hour": {
+        "name": "hour", "in": "query", "required": false,
+        "schema": { "type": "integer", "minimum": 0, "maximum": 23, "default": 22 },
+        "description": "Local hour of travel (0-23). Picks the day, evening or night estimate."
+      }
+    },
+    "responses": {
+      "RateLimited": {
+        "description": "Too many requests",
+        "headers": { "Retry-After": { "schema": { "type": "integer" } } },
+        "content": { "application/json": { "schema": { "type": "object", "properties": { "error": { "type": "string" }, "retry_after_s": { "type": "integer" } } } } }
+      },
+      "BadRequest": {
+        "description": "Bad or out-of-area input",
+        "content": { "application/json": { "schema": { "type": "object", "properties": { "error": { "type": "string", "example": "point is outside Delhi NCT" } } } } }
+      }
+    },
+    "schemas": {
+      "Meta": {
+        "type": "object",
+        "properties": {
+          "version": { "type": "string" },
+          "type": { "type": "string", "example": "prototype" },
+          "disclaimer": { "type": "string" },
+          "attribution": { "type": "string" }
+        }
+      },
+      "RouteResponse": {
+        "type": "object",
+        "properties": {
+          "band": { "type": "string", "enum": ["day", "evening", "night"] },
+          "hour": { "type": "integer" },
+          "start": { "type": "object", "properties": { "snapped_lat": { "type": "number" }, "snapped_lon": { "type": "number" }, "snap_m": { "type": "number", "description": "Distance from your point to the nearest street node" } } },
+          "end": { "type": "object" },
+          "routes": { "type": "array", "items": { "$ref": "#/components/schemas/Route" } },
+          "note": { "type": "string", "nullable": true },
+          "candidates_tried": { "type": "integer" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        }
+      },
+      "Route": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string", "example": "Fastest" },
+          "score": { "type": "number", "description": "Night Activity Score 0-100 (activity, not safety)" },
+          "band": { "type": "string" },
+          "length_m": { "type": "number" },
+          "minutes": { "type": "number", "description": "Walking time" },
+          "detour_minutes": { "type": "number" },
+          "points": { "type": "object", "description": "Score contribution per factor: open_places, gaps, help, main_road, transport, turns, cameras" },
+          "raw": { "type": "object", "description": "Underlying measurements (places per km, longest gap, ...)" },
+          "confidence": { "type": "object", "properties": { "confirmed_share_of_open_mass": { "type": "number", "description": "Share of the open-places signal backed by confirmed opening hours. Low values mean the score leans on estimates." } } },
+          "details": { "type": "object", "description": "Places and segments along the route" },
+          "geometry": { "type": "object", "description": "GeoJSON LineString, [lon, lat]" }
+        }
+      },
+      "HelpResponse": {
+        "type": "object",
+        "properties": {
+          "band": { "type": "string" },
+          "hour": { "type": "integer" },
+          "police": { "type": "array", "items": { "$ref": "#/components/schemas/HelpPoint" } },
+          "hospital": { "type": "array", "items": { "$ref": "#/components/schemas/HelpPoint" } },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        }
+      },
+      "HelpPoint": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "lat": { "type": "number" },
+          "lon": { "type": "number" },
+          "m": { "type": "number", "description": "Distance in metres" },
+          "p": { "type": "number", "description": "Estimated chance it is staffed/open at that hour" },
+          "c": { "type": "boolean", "description": "Opening hours confirmed (not estimated)" }
+        }
+      }
+    }
+  }
+}

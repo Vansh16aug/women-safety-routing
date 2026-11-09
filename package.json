@@ -1,0 +1,26 @@
+{
+  "name": "delhi-night-routes",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Prototype: compares walking routes in Delhi by night-time activity. An activity estimate, not a safety rating.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "parity": "tsx scripts/parity.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.4.5",
+    "proj4": "^2.15.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/proj4": "^2.5.5",
+    "@types/react": "^19",
+    "tsx": "^4.19.0",
+    "typescript": "^5"
+  }
+}

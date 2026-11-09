@@ -1,0 +1,70 @@
+{
+ "summary": {
+  "random_routes": {
+   "n": 60,
+   "median_secs": 0.85,
+   "max_secs": 1.41,
+   "share_with_alternative": 0.85,
+   "mean_score_gain_when_alternative": 14.7,
+   "mean_alt_detour_min": 5.2,
+   "max_snap_m": 83,
+   "by_hour_mean_fastest_score": {
+    "11": 58.5,
+    "19": 54.6,
+    "23": 34.4
+   }
+  }
+ },
+ "checks": [
+  {
+   "check": "random routes: at least 95% return a route",
+   "ok": true,
+   "detail": "60 ok, 0 errors {}"
+  },
+  {
+   "check": "every route is scored within 0-100",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "best route scores at least the fastest route",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "slowest response under 10 seconds",
+   "ok": true,
+   "detail": "max 1.41s, median 0.85s"
+  },
+  {
+   "check": "alternatives never exceed the 1.6x detour limit",
+   "ok": true,
+   "detail": "max detour 19.5 min"
+  },
+  {
+   "check": "same start and end gives a clear error",
+   "ok": true,
+   "detail": "start and end snap to the same junction; pick points further apart"
+  },
+  {
+   "check": "point outside Delhi gives a clear error",
+   "ok": true,
+   "detail": "point is outside Delhi NCT"
+  },
+  {
+   "check": "very long trip gives a clear error",
+   "ok": true,
+   "detail": "points are 35.3 km apart; this demo handles up to 15 km"
+  },
+  {
+   "check": "hour above 23 wraps instead of failing",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "Karol Bagh: fastest route scores lower at night than by day on every pair",
+   "ok": true,
+   "detail": "mean day 76.9, mean night 42.9"
+  }
+ ]
+}

@@ -1,0 +1,307 @@
+{
+ "BANDS": [
+  [
+   "day",
+   6,
+   18
+  ],
+  [
+   "evening",
+   18,
+   22
+  ],
+  [
+   "night",
+   22,
+   6
+  ]
+ ],
+ "BUS_OPEN": [
+  0.8,
+  0.6,
+  0.1
+ ],
+ "BUS_WEIGHT": 0.3,
+ "CCTV_RADIUS": 30,
+ "CCTV_REF_PER_KM": 3,
+ "DEDUPE_CLOSE_M": 10,
+ "DEDUPE_NAME_M": 30,
+ "F1_REF_PER_KM": 15.0,
+ "GAP_MIN_M": 150,
+ "HELP_HOSPITAL_RE": "hospital|aiims|medical (college|institute)|trauma",
+ "HELP_KINDS": [
+  "clinic",
+  "hospital",
+  "pharmacy",
+  "police"
+ ],
+ "HELP_RADIUS": 250,
+ "HELP_REF": 3.0,
+ "HELP_WEIGHT": {
+  "police": 2.0,
+  "hospital": 1.0,
+  "pharmacy": 1.0,
+  "clinic": 0.5
+ },
+ "LAMP_RADIUS": 20,
+ "MAIN_ROADS": [
+  "primary",
+  "primary_link",
+  "secondary",
+  "secondary_link",
+  "tertiary",
+  "tertiary_link",
+  "trunk",
+  "trunk_link"
+ ],
+ "METRO_MERGE_M": 100,
+ "METRO_OPEN": [
+  1.0,
+  1.0,
+  0.15
+ ],
+ "OPEN_THRESHOLD": 0.5,
+ "OVERTURE_MIN_CONFIDENCE": 0.5,
+ "PLACE_RADIUS": 40,
+ "POI_KINDS": [
+  "police",
+  "hospital",
+  "pharmacy",
+  "fuel",
+  "atm"
+ ],
+ "POI_MAX_PER_KIND": 14,
+ "POI_METRO_RADIUS": 150,
+ "POI_NOT_HOSPITAL_RE": "dentist|dental|doctor|\\bdr\\.? |physio|clinic|nursing|polyclinic|dispensary|diagnostic|eye |skin|ortho|cardiolog|\\bcent(er|re)\\b",
+ "POI_RADIUS": {
+  "police": 120,
+  "hospital": 120,
+  "pharmacy": 60,
+  "fuel": 60,
+  "atm": 40
+ },
+ "POI_SPACING_M": 350,
+ "PRIORS": {
+  "pharmacy": [
+   1.0,
+   0.9,
+   0.15
+  ],
+  "hospital": [
+   1.0,
+   1.0,
+   0.5
+  ],
+  "clinic": [
+   1.0,
+   0.6,
+   0.05
+  ],
+  "atm": [
+   1.0,
+   1.0,
+   0.5
+  ],
+  "bank": [
+   1.0,
+   0.1,
+   0.0
+  ],
+  "restaurant": [
+   0.9,
+   1.0,
+   0.2
+  ],
+  "fast_food": [
+   0.9,
+   1.0,
+   0.25
+  ],
+  "cafe": [
+   0.9,
+   0.9,
+   0.15
+  ],
+  "bar": [
+   0.3,
+   1.0,
+   0.5
+  ],
+  "shop": [
+   1.0,
+   0.8,
+   0.05
+  ],
+  "convenience": [
+   1.0,
+   0.9,
+   0.1
+  ],
+  "fuel": [
+   1.0,
+   1.0,
+   0.7
+  ],
+  "hotel": [
+   1.0,
+   1.0,
+   0.3
+  ],
+  "cinema": [
+   1.0,
+   1.0,
+   0.4
+  ],
+  "worship": [
+   1.0,
+   0.7,
+   0.1
+  ],
+  "market": [
+   1.0,
+   0.8,
+   0.0
+  ],
+  "police": [
+   1.0,
+   1.0,
+   1.0
+  ]
+ },
+ "PROFILE_BIN_M": 100,
+ "PROFILE_REF": 1.5,
+ "SAMPLE_SPACING": 20,
+ "SCORE_WEIGHTS": {
+  "open_places": 25,
+  "gaps": 15,
+  "help": 15,
+  "main_road": 15,
+  "transport": 10,
+  "turns": 10,
+  "cameras": 3
+ },
+ "SMALL_MEDICAL_RE": "nursing|clinic|polyclinic|maternity|dispensary|dental|eye |physio|diagnostic|centre for|center for",
+ "STATION_NAME_M": 400,
+ "TRANSIT_RADIUS": 200,
+ "TRANSIT_REF": 1.5,
+ "TURNS_REF_PER_KM": 8,
+ "TURN_ANGLE_DEG": 45,
+ "TURN_WINDOW_M": 15,
+ "WALKABLE": [
+  "bridleway",
+  "corridor",
+  "cycleway",
+  "footway",
+  "living_street",
+  "path",
+  "pedestrian",
+  "primary",
+  "primary_link",
+  "residential",
+  "road",
+  "secondary",
+  "secondary_link",
+  "service",
+  "steps",
+  "tertiary",
+  "tertiary_link",
+  "track",
+  "trunk",
+  "trunk_link",
+  "unclassified"
+ ],
+ "WALK_M_PER_MIN": 80,
+ "engine": {
+  "ALPHAS": [
+   0.0,
+   0.5,
+   1.0,
+   2.0,
+   4.0
+  ],
+  "DELHI_BOX": [
+   28.4,
+   76.83,
+   28.89,
+   77.35
+  ],
+  "BALANCED_MAX_RATIO": 1.25,
+  "ACTIVE_MAX_RATIO": 1.6,
+  "MAX_STRAIGHT_M": 15000,
+  "EXPLORE_KINDS": [
+   "pharmacy",
+   "atm",
+   "fuel",
+   "hospital",
+   "police",
+   "hotel",
+   "bank",
+   "worship",
+   "metro"
+  ],
+  "OVERLAYS": [
+   "bus",
+   "cctv",
+   "lamps"
+  ],
+  "HELP_KINDS": [
+   "police",
+   "hospital"
+  ],
+  "HELP_DEDUPE_M": 150,
+  "MIN_GAIN": 2.0,
+  "KIND_LABEL": {
+   "station": "Station",
+   "area": "Area",
+   "landmark": "Landmark",
+   "street": "Street",
+   "place": "Place"
+  },
+  "DETAIL_MIN_PROB": 0.2,
+  "DETAIL_MAX_PLACES": 400
+ },
+ "kinds": [
+  "atm",
+  "bank",
+  "bar",
+  "cafe",
+  "cinema",
+  "clinic",
+  "convenience",
+  "fast_food",
+  "fuel",
+  "hospital",
+  "hotel",
+  "market",
+  "pharmacy",
+  "police",
+  "restaurant",
+  "shop",
+  "worship"
+ ],
+ "bands": [
+  [
+   "day",
+   6,
+   18
+  ],
+  [
+   "evening",
+   18,
+   22
+  ],
+  [
+   "night",
+   22,
+   6
+  ]
+ ],
+ "counts": {
+  "nodes": 256476,
+  "nodes_ll": 256476,
+  "edges": 353432,
+  "vertices": 1083845,
+  "places": 77739,
+  "search_rows": 82222
+ }
+}
